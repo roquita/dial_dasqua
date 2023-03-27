@@ -1,4 +1,7 @@
-sensar en flaco de bajada 
+sensar en flaco de subida
+
+Lineas del cable usb:
+cable negro (gnd)
 cable rojo (clk)
 cable blanco ( data)
 cable verde ( - )
