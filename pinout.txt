@@ -1,0 +1,10 @@
+sensar en flaco de bajada 
+cable rojo (clk)
+cable blanco ( data)
+cable verde ( - )
+cable sin proteccion (req)
+
+-51.33   0 3 3 1 5 0 2  (mm)
++51.64   0 4 6 1 5 0 0  (mm)
++2.0330  0 0 3 3 0 2 1  (inch)
+-2.0330  0 0 3 3 0 2 3  (inch)
