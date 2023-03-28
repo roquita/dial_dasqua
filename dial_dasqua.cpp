@@ -1,14 +1,22 @@
+#include "esp32-hal-gpio.h"
 #include "Arduino.h"
 #include "dial_dasqua.h"
 
 void dial_init(dial_dasqua_t* dev) {
   pinMode(dev->clk_pin, INPUT);
   pinMode(dev->data_pin, INPUT);
+  pinMode(dev->req_pin, OUTPUT);
+  digitalWrite(dev->req_pin, 1);
 }
 
 dial_output_t dial_get_value(dial_dasqua_t* dev) {
   // 80 ms exec
-
+  // SEND REQUEST
+  digitalWrite(dev->req_pin, 0);
+  delay(10);
+  digitalWrite(dev->req_pin, 1);
+  
+  /*
   // WAIT FOR IDLE
   int ticks = DIAL_IDLE_TICKS;
   while (ticks > 0) {
@@ -16,6 +24,8 @@ dial_output_t dial_get_value(dial_dasqua_t* dev) {
     ticks = (clk_val == 0) ? DIAL_IDLE_TICKS : ticks - 1;
     delayMicroseconds(DIAL_SAMPLING_US);
   }
+*/
+
 
   // GET ALL 28 BITS
   uint32_t data_bits = 0;
@@ -34,7 +44,7 @@ dial_output_t dial_get_value(dial_dasqua_t* dev) {
       data_bits = (data_bits >> 1);
       quant_bits--;
     }
-    
+
     timeout_ticks++;
     if (timeout_ticks >= DIAL_TIMEOUT_TICKS) {
       break;

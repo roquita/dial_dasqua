@@ -2,7 +2,8 @@
 
 #define DIAL_CLK_PIN 14
 #define DIAL_DATA_PIN 27
-dial_dasqua_t mydial = { DIAL_CLK_PIN, DIAL_DATA_PIN };
+#define DIAL_REQ_PIN 26
+dial_dasqua_t mydial = { DIAL_CLK_PIN, DIAL_DATA_PIN, DIAL_REQ_PIN };
 
 void setup() {
   // put your setup code here, to run once:

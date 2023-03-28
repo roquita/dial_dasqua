@@ -26,6 +26,7 @@ typedef struct {
 typedef struct {
   int clk_pin;
   int data_pin;
+  int req_pin;
 } dial_dasqua_t;
 
 void dial_init(dial_dasqua_t* dev);
