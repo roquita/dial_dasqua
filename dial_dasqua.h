@@ -1,12 +1,12 @@
 #pragma once
 
 
-#define DIAL_SAMPLING_US 10//10
-#define DIAL_OK_IDLE_US  (80*1000)//(50 * 1000)
+#define DIAL_SAMPLING_US 10          //10
+#define DIAL_OK_IDLE_US (80 * 1000)  //(50 * 1000)
 #define DIAL_OK_IDLE_TICKS (DIAL_OK_IDLE_US / DIAL_SAMPLING_US)
-#define DIAL_TIMEOUT_IDLE_US (250*1000)
+#define DIAL_TIMEOUT_IDLE_US (250 * 1000)
 #define DIAL_TIMEOUT_IDLE_TICKS (DIAL_TIMEOUT_IDLE_US / DIAL_SAMPLING_US)
-#define DIAL_ACTIVE_US (80*1000) // (80*1000)
+#define DIAL_ACTIVE_US (80 * 1000)  // (80*1000)
 #define DIAL_ACTIVE_TICKS (DIAL_ACTIVE_US / DIAL_SAMPLING_US)
 #define DIAL_MAX_RISING_FLAGS 64
 
@@ -25,6 +25,11 @@ typedef enum {
   POSITIVE = 1,
 } dial_sign_t;
 
+typedef enum {
+  DIAL_LITTLE = 0,
+  DIAL_BIG,
+} dial_devices_t;
+
 typedef struct {
   float value;
   dial_unit_t unit;
@@ -38,12 +43,12 @@ typedef struct {
   int req_pin;
 } dial_dasqua_t;
 
-typedef enum{
-  DIAL_OK=0,
+typedef enum {
+  DIAL_OK = 0,
   DIAL_TIMEOUT_IDLE,
-  DIAL_UNRECOGNIZED_PINS,
-  DIAL_INVALID_RISING_PULSES,
-}dial_error_t;
+  DIAL_UNRECOGNIZED_PINS,  
+  DIAL_UNRECOGNIZED_DEVICE,
+} dial_error_t;
 
 dial_error_t dial_init(dial_dasqua_t* dev);
 dial_error_t dial_get_value(dial_dasqua_t* dev, dial_output_t* output);
